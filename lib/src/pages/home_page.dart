@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: _createBottomNAvigationBar(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.filter_center_focus),
+        onPressed: () => Navigator.pushNamed(context, 'scan'),
+        child: const Icon(Icons.filter_center_focus),
       ),
     );
   }
@@ -66,4 +66,5 @@ class _HomePageState extends State<HomePage> {
       default: return MapasPage();
     }
   }
+
 }

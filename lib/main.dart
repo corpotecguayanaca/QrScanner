@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qrscannerapp/src/pages/direcciones_page.dart';
 import 'package:qrscannerapp/src/pages/home_page.dart';
 import 'package:qrscannerapp/src/pages/mapas_page.dart';
+import 'package:qrscannerapp/src/pages/scan_qr_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         'home': (context) => HomePage(),
         'mapas': (context) => MapasPage(),
         'direcciones':(context) => DireccionesPage(),
+        'scan':(context) => ScanQRPage(),
       },
       theme: ThemeData(
         useMaterial3: true,
