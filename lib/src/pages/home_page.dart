@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qrscannerapp/src/models/scan_model.dart';
 import 'package:qrscannerapp/src/pages/direcciones_page.dart';
 import 'package:qrscannerapp/src/pages/mapas_page.dart';
+import 'package:qrscannerapp/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,6 +21,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     String? codigoLeido = ModalRoute.of(context)!.settings.arguments as String?;
+
+    if(codigoLeido != null) {
+      final scan = ScanModel(valor: codigoLeido);
+      DBProvider.db.nuevoScan(scan);
+    }
 
     return Scaffold(
       appBar: AppBar(

@@ -82,9 +82,9 @@ class DBProvider {
       final db = await database;
       final res = await db.query("Scans");
       
-      List<ScanModel>? list = res.isEmpty? 
+      List<ScanModel>? list = res.isNotEmpty? 
         res.map((e) => ScanModel.fromJson(e)).toList() 
-        : null;
+        : [];
       
       return list;
     }
@@ -97,9 +97,9 @@ class DBProvider {
         whereArgs: [tipo]
       );
       
-      List<ScanModel>? list = res.isEmpty? 
+      List<ScanModel>? list = res.isNotEmpty? 
         res.map((e) => ScanModel.fromJson(e)).toList() 
-        : null;
+        : [];
       
       return list;
     }
@@ -125,6 +125,13 @@ class DBProvider {
         where: 'id=?',
         whereArgs: [id],
       );
+
+      return res;
+    }
+
+    Future<int> deleteAll() async {
+      final db = await database;
+      final res = await db.delete('Scans');
 
       return res;
     }
