@@ -26,8 +26,6 @@ class _HomePageState extends State<HomePage> {
     if(codigoLeido != null) {
       final scan = ScanModel(valor: codigoLeido);
       scansBloc.agregarScan(scan);
-    } else { 
-      scansBloc.obtenerScans();
     }
 
     return Scaffold(

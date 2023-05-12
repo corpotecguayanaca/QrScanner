@@ -1,7 +1,8 @@
 import 'package:qrscannerapp/src/models/scan_model.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/material.dart';
 
-abrirScan(ScanModel scan) async {
+abrirScan(BuildContext context, ScanModel scan) async {
   if (scan.tipo! == "http") {
     String host = scan.valor!.substring(8);
     final url = Uri(scheme: 'https', host: host);
@@ -13,6 +14,6 @@ abrirScan(ScanModel scan) async {
       throw Exception('Could not launch $url');
     }
   } else {
-    print("geo");
+    Navigator.pushNamed(context, 'coordenadas', arguments: scan);
   }
 }

@@ -40,6 +40,8 @@ dependencies:
   sqflite: ^2.2.8+2
   path_provider: ^2.0.15
   url_launcher: ^6.1.11
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.1
 
 dev_dependencies:
   flutter_test:

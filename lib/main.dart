@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrscannerapp/src/pages/coordenadas_page.dart';
 import 'package:qrscannerapp/src/pages/direcciones_page.dart';
 import 'package:qrscannerapp/src/pages/home_page.dart';
 import 'package:qrscannerapp/src/pages/mapas_page.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         'mapas': (context) => MapasPage(),
         'direcciones':(context) => DireccionesPage(),
         'scan':(context) => ScanQRPage(),
+        'coordenadas': (context) => CoordenadasPage(),
       },
       theme: ThemeData(
         useMaterial3: true,
