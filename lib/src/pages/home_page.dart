@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qrscannerapp/src/bloc/scan_bloc.dart';
-import 'package:qrscannerapp/src/models/scan_model.dart';
 import 'package:qrscannerapp/src/pages/direcciones_page.dart';
 import 'package:qrscannerapp/src/pages/mapas_page.dart';
 
@@ -21,13 +20,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    String? codigoLeido = ModalRoute.of(context)!.settings.arguments as String?;
-
-    if(codigoLeido != null) {
-      final scan = ScanModel(valor: codigoLeido);
-      scansBloc.agregarScan(scan);
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("QRScanner"),
@@ -65,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           currentIndex = index;
         });
       },
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
           label: "Mapas",

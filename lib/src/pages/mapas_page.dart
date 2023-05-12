@@ -13,7 +13,7 @@ class MapasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     scansBloc.obtenerScans();
     return StreamBuilder(
-      stream: scansBloc.scansStream,
+      stream: scansBloc.scansStreamGeo,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return const Center(

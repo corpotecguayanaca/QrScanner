@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qrscannerapp/src/bloc/scan_bloc.dart';
+import 'package:qrscannerapp/src/models/scan_model.dart';
 
 class ScanQRPage extends StatefulWidget {
   const ScanQRPage({Key? key}) : super(key: key);
@@ -130,7 +132,10 @@ class _ScanQRPageState extends State<ScanQRPage> {
         controller.pauseCamera();
         controller.stopCamera();
         controller.dispose();
-        Navigator.pushNamed(context, 'home', arguments: result!.code);
+        final scansBloc = ScansBloc();
+        ScanModel scan = ScanModel(valor: result!.code);
+        scansBloc.agregarScan(scan);
+        Navigator.pushNamed(context, 'home');
       });
     });
   }
