@@ -45,7 +45,12 @@ class _ScanQRPageState extends State<ScanQRPage> {
                   Container(
                     margin: const EdgeInsets.all(8),
                     child: ElevatedButton(
-                        onPressed: () => Navigator.pushNamed(context, 'home'),
+                        onPressed: () {
+                          controller!.pauseCamera();
+                          controller!.stopCamera();
+                          controller!.dispose();
+                          Navigator.pushNamed(context, 'home');
+                        } ,
                         child: Icon(Icons.close)),
                   ),
                   Container(

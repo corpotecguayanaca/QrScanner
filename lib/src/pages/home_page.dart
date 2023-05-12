@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:qrscannerapp/src/bloc/scan_bloc.dart';
 import 'package:qrscannerapp/src/models/scan_model.dart';
 import 'package:qrscannerapp/src/pages/direcciones_page.dart';
 import 'package:qrscannerapp/src/pages/mapas_page.dart';
-import 'package:qrscannerapp/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +16,7 @@ class _HomePageState extends State<HomePage> {
   //https://ljmarquezz.github.io
   //geo:8.279876,-62.760479
 
+  final scansBloc = ScansBloc();
   int currentIndex = 0;
 
   @override
@@ -24,20 +25,28 @@ class _HomePageState extends State<HomePage> {
 
     if(codigoLeido != null) {
       final scan = ScanModel(valor: codigoLeido);
-      DBProvider.db.nuevoScan(scan);
+      scansBloc.agregarScan(scan);
+    } else { 
+      scansBloc.obtenerScans();
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("QRScanner"),
+        title: const Text("QRScanner"),
         centerTitle: true,
+        automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).primaryColor,
         titleTextStyle: TextStyle( 
           color: Theme.of(context).colorScheme.onPrimary,
           fontSize: Theme.of(context).textTheme.headlineLarge!.fontSize,
         ),
+
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.delete_forever, color: Theme.of(context).colorScheme.onPrimary,))
+          IconButton(
+            onPressed: (){
+              scansBloc.borrarScanTodos();
+            }, 
+            icon: Icon(Icons.delete_forever, color: Theme.of(context).colorScheme.onPrimary,))
         ],
       ),
       body: _callPage(currentIndex),

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:qrscannerapp/src/providers/db_provider.dart';
+import 'package:qrscannerapp/src/bloc/scan_bloc.dart';
 import 'package:qrscannerapp/src/models/scan_model.dart';
+import 'package:qrscannerapp/src/utils/utils.dart' as utils;
+
 
 class MapasPage extends StatelessWidget {
-  const MapasPage({super.key});
+  MapasPage({super.key});
+
+  final scansBloc = ScansBloc();
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: DBProvider.db.getAllScans(),
+    return StreamBuilder(
+      stream: scansBloc.scansStream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return const Center(
@@ -30,7 +34,7 @@ class MapasPage extends StatelessWidget {
               background: Container(
                 color: Colors.redAccent,
               ),
-              onDismissed: (direction) => DBProvider.db.deleteScan(scans[index].id!),
+              onDismissed: (direction) => scansBloc.borrarScan(scans[index].id!),
               child: ListTile(
                 leading: Icon(
                   Icons.location_on_outlined,
@@ -41,6 +45,7 @@ class MapasPage extends StatelessWidget {
                   Icons.arrow_forward,
                   color: Theme.of(context).primaryColor,
                 ),
+                onTap: () => utils.abrirScan(scans[index]),
               ),
             );
           }),
