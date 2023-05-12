@@ -11,10 +11,15 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  //https://ljmarquezz.github.io
+  //geo:8.279876,-62.760479
+
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    String? codigoLeido = ModalRoute.of(context)!.settings.arguments as String?;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("QRScanner"),
